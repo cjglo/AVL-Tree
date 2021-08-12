@@ -2,12 +2,6 @@ public class TreeNode {
 
     // TODO: Make generic
 
-    // attributes and methods related to value
-    private int value;
-
-    public getValue() { return value; }
-    public setValue(int val) { this.value = val; }
-
     // Constructors
     TreeNode() {
         this.value = null;
@@ -16,5 +10,13 @@ public class TreeNode {
     TreeNode(int val) {
         this.value = val;
     }
+    
+
+    // attributes and methods related to value
+    private int value;
+
+    public getValue() { return value; }
+    public setValue(int val) { this.value = val; }
+
 
 }
