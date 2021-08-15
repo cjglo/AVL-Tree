@@ -8,13 +8,14 @@ public class AVLTree {
     // constructors
     AVLTree() {
         this.root = null;
-        this.isBalanced = true;
     }
 
     // rebalncing attriutes and methods
-    private boolean isBalanced;
+    
+
+
     private void rebalance() { } // TODO
-    public TreeNode tallestGrandchild() { } // TODO
+    private TreeNode restructor(TreeNode x) { return new TreeNode(); } // TODO
 
 
     // public interface methods: 
@@ -24,6 +25,16 @@ public class AVLTree {
 
     // private methods:
 
+    public void rebalance(TreeNode node) throws Exception { //TODO
+        TreeNode n = node;
+        while(!(n == this.root)) {
+            n = n.parent;
+            if(!n.isBalanced()) {
+                TreeNode x = n.tallestGrandchild();
+                n = restructor(x);
+            }
+        }        
+    }
     
 
 }
