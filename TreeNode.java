@@ -18,6 +18,20 @@ public class TreeNode {
         this.isLeaf = false;
         this.parent = par;
     }
+
+    public void convertToNonLeaf(int val, TreeNode par) { // SILENTLY FAILS IF NOT LEAF
+
+        if(this.isLeaf) {
+            this.value = val;
+            this.left = new TreeNode();
+            this.right = new TreeNode();
+            this.isLeaf = false;
+            this.parent = par;
+        }
+
+        // no else, so this is a silent failure
+
+    }
     
 
     // attributes and methods related to value
@@ -57,15 +71,16 @@ public class TreeNode {
             return true;
         } else {
             int bal = this.left.getHeight() - this.right.getHeight();
-            return ((-1 <= bal) && (bal >= 1)); 
+            return ((-1 <= bal) && (bal <= 1)); 
         }
     }
 
     public TreeNode tallestGrandchild() throws Exception { //TODO: change to have no paramter (take self)
 
-        if(this.left.isLeaf && this.right.isLeaf) {
-            throw new Exception("No Grandchild Node, Tree is too small!"); // TODO: Not sure if this is correct erorr handling
-        }
+        // TODO: Have to double check, but this might not be necessary
+        // if(this.left.isLeaf && this.right.isLeaf) {
+        //     throw new Exception("No Grandchild Node, Tree is too small!"); 
+        // }
 
         if(this.left.getHeight() >= this.right.getHeight()) {
 

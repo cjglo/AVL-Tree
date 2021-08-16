@@ -4,5 +4,8 @@ build:
 	rm *.class
 	javac TreeNode.java AVLTree.java TreeTester.java
 
-run:
+program:
 	java TreeTester
+
+
+run: build program

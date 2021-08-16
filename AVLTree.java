@@ -7,13 +7,18 @@ public class AVLTree {
 
     // constructors
     AVLTree() {
-        this.root = null;
+        this.root = new TreeNode();
+        this.root.parent = new TreeNode(); // superroot to prevent null exceptions
+        this.root.parent.left = this.root;
+        this.root.parent.right = this.root;
     }
 
     // rebalncing attriutes and methods
     
 
     private TreeNode restructor(TreeNode x) { 
+
+        System.out.println("RESTRCUTURE TIGGERED");
 
         // Follows the 4 types of restrucures for AVL Trees (two single rotations and two double rotations)
 
@@ -89,6 +94,11 @@ public class AVLTree {
 
         t2.parent = c;
         c.left = t2;
+
+        if(a == this.root || c == this.root) {
+            this.root = b;
+        }
+        
     }
 
 
@@ -103,7 +113,7 @@ public class AVLTree {
     private TreeNode insertRecurse(int val, TreeNode node, TreeNode parent) throws Exception {
         
         if(node.isLeaf) {
-            node = new TreeNode(val, parent);
+            node.convertToNonLeaf(val, parent);
             return node;
         } else {
 

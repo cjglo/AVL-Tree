@@ -31,23 +31,25 @@ public class TreeTester {
 
             tree.insert(0);
 
-            tree.insert(-2);
+            // tree.insert(-2);
 
-            tree.insert(-10);
+            // tree.insert(-10);
 
-            tree.insert(-9);
+            // tree.insert(-9);
 
             tree.insert(21);
 
             tree.insert(17);
 
-            tree.insert(-17);
+            // tree.insert(-17);
 
-            tree.insert(-9);
+            // tree.insert(-9);
 
             tree.insert(19);
 
             tree.insert(8);
+
+            tree.insert(1);
 
 
             System.out.println("PASSED");
@@ -55,6 +57,7 @@ public class TreeTester {
 
 
         } catch(Exception e) {
+            System.out.println("FAILED");
             System.out.println(e);
         }
 
