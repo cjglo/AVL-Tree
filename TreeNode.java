@@ -13,8 +13,8 @@ public class TreeNode {
 
     TreeNode(int val, TreeNode par) {
         this.value = val;
-        this.left = null;
-        this.right = null;
+        this.left = new TreeNode();
+        this.right = new TreeNode();
         this.isLeaf = false;
         this.parent = par;
     }
