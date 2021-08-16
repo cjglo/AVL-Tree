@@ -75,7 +75,7 @@ public class TreeNode {
         }
     }
 
-    public TreeNode tallestGrandchild() throws Exception { //TODO: change to have no paramter (take self)
+    public TreeNode tallestGrandchild() throws Exception {
 
         // TODO: Have to double check, but this might not be necessary
         // if(this.left.isLeaf && this.right.isLeaf) {

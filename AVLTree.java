@@ -98,7 +98,7 @@ public class AVLTree {
         if(a == this.root || c == this.root) {
             this.root = b;
         }
-        
+
     }
 
 
@@ -133,7 +133,7 @@ public class AVLTree {
 
     // private methods:
 
-    public void rebalance(TreeNode node) throws Exception { //TODO
+    public void rebalance(TreeNode node) throws Exception { 
         TreeNode n = node;
         while(!(n == this.root)) {
             n = n.parent;
