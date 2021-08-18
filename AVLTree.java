@@ -118,6 +118,7 @@ public class AVLTree {
 
         TreeNode node;
         node = insertRecurse(val, this.root, null);
+        node.setHeight();
         rebalance(node);
     }
 
@@ -139,13 +140,25 @@ public class AVLTree {
     } 
 
 
-    public int remove(int val) { 
+    public void remove(int val) throws Exception { 
 
+        removeRecurse(this.root, val);
 
-        
+        // TODO: Add node finding to pass into restructure
+    }
+    private TreeNode removeRecurse(TreeNode node, int val) throws Exception {
 
+        if(node.getValue() == val) {
 
-        return 0;
+            // TODO: Add remove from binary tree algorithm
+            return new TreeNode();
+        }
+        else if(node.getValue() < val) {
+            return removeRecurse(node.right, val);
+        } else {
+            return removeRecurse(node.left, val);
+        }
+
     }
 
 
@@ -155,9 +168,13 @@ public class AVLTree {
         TreeNode n = node;
         while(!(n == this.root)) {
             n = n.parent;
+            n.setHeight();
             if(!n.isBalanced()) {
                 TreeNode x = n.tallestGrandchild();
                 n = restructor(x);
+                n.left.setHeight();
+                n.right.setHeight();
+                n.setHeight();
             }
         }        
     }
@@ -179,7 +196,7 @@ public class AVLTree {
 
         printInOrderRecurse(node.left);
 
-        System.out.println(node.getValue());
+        System.out.println(node.getValue() + " (" + node.getHeight() + ")");
 
         printInOrderRecurse(node.right);
 

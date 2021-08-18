@@ -44,17 +44,21 @@ public class TreeNode {
 
 
     public int getHeight() {
+        return this.height;
+    }
+    public void setHeight() { 
+
         if(isLeaf) {
-            return 0;
+            this.height = 0;
         } else {
             
             int leftHeight = left.getHeight() + 1;
             int rightHeight = right.getHeight() + 1;
 
-            return (leftHeight >= rightHeight) ? leftHeight : rightHeight;
+            this.height = (leftHeight >= rightHeight) ? leftHeight : rightHeight;
         }
+        
     }
-    public void setHeight(int ht) { this.height = ht; }
 
     public int getValue() throws Exception { 
         if(isLeaf) {
