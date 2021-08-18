@@ -33,8 +33,7 @@ public class AVLTree {
 
                 // move parent of this subtree before roation
                 if(z != this.root) {
-                    z.parent.left = y;
-                    y.parent = z.parent;
+                    reassignParent(z, y);
                 }
                 doRotation(x, y, z, x.right, y.right);
                 return y; // y is new root so return it
@@ -44,8 +43,7 @@ public class AVLTree {
 
                 // move parent of this subtree before roation
                 if(z != this.root) {
-                    z.parent.left = x;
-                    x.parent = z.parent;
+                    reassignParent(z, x);
                 }
                 doRotation(y, x, z, x.left, x.right);
                 return x; // x is new root
@@ -59,8 +57,7 @@ public class AVLTree {
 
                 // move parent of this subtree before roation
                 if(z != this.root) {
-                    z.parent.right = y;
-                    y.parent = z.parent;
+                    reassignParent(z, y);
                 }
                 doRotation(z, y, x, y.left, x.left);
                 return y; // y is new root
@@ -69,8 +66,7 @@ public class AVLTree {
 
                 // move parent of this subtree before roation
                 if(z != this.root) {
-                    z.parent.right = x;
-                    x.parent = z.parent;
+                    reassignParent(z, x);
                 }
                 doRotation(z, x, y, x.left, x.right);
                 return x; // x is new root
@@ -79,6 +75,7 @@ public class AVLTree {
         }
 
     } 
+    // helper function that does the rotation reassignments
     private void doRotation(TreeNode a, TreeNode b, TreeNode c, TreeNode t1, TreeNode t2) {
 
         // reassign all the doubly linked connections
@@ -97,6 +94,20 @@ public class AVLTree {
 
         if(a == this.root || c == this.root) {
             this.root = b;
+        }
+
+    }
+    //helper function that gives subtree root new parent before rotation
+    private void reassignParent(TreeNode oldRoot, TreeNode newRoot) {
+
+        if(oldRoot.parent.left == oldRoot) {
+
+            oldRoot.parent.left = newRoot;
+            newRoot.parent = oldRoot.parent;
+        } else {
+
+            oldRoot.parent.right = newRoot;
+            newRoot.parent = oldRoot.parent;
         }
 
     }
@@ -128,7 +139,14 @@ public class AVLTree {
     } 
 
 
-    public int remove(int val) { return 0;} // TODO
+    public int remove(int val) { 
+
+
+        
+
+
+        return 0;
+    }
 
 
     // private methods:
@@ -142,6 +160,29 @@ public class AVLTree {
                 n = restructor(x);
             }
         }        
+    }
+
+    // Primarily made for testing
+    public void printInOrder() throws Exception {
+
+        System.out.println("In Order Traversal: \n");
+        printInOrderRecurse(this.root);
+        System.out.println("\n End in Order Traversal");
+
+        
+    }
+    public void printInOrderRecurse(TreeNode node) throws Exception {
+
+        if(node.isLeaf) {
+            return;
+        }
+
+        printInOrderRecurse(node.left);
+
+        System.out.println(node.getValue());
+
+        printInOrderRecurse(node.right);
+
     }
     
 
