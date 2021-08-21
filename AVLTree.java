@@ -139,26 +139,55 @@ public class AVLTree {
 
     } 
 
+    public void remove(int val) throws Exception {
 
-    public void remove(int val) throws Exception { 
+        // check if tree has no nodes
+        if(this.root.isLeaf) {
+            throw new Exception("No nodes in tree");
+        } 
 
-        removeRecurse(this.root, val);
+        TreeNode tempPtr = this.root;
 
-        // TODO: Add node finding to pass into restructure
+        // doing iteratively just to mix it up for practice
+        while(!tempPtr.isLeaf && tempPtr.getValue() != val) {
+
+            if(val > tempPtr.getValue()) {
+                tempPtr = tempPtr.right;
+            } else {
+                tempPtr = tempPtr.left;
+            }
+        }
+
+        if(tempPtr.isLeaf) {
+            throw new Exception("Value to remove is not in Tree!");
+        }
+
+        replaceNodeWithNextValue(tempPtr);
+
     }
-    private TreeNode removeRecurse(TreeNode node, int val) throws Exception {
 
-        if(node.getValue() == val) {
 
-            // TODO: Add remove from binary tree algorithm
-            return new TreeNode();
-        }
-        else if(node.getValue() < val) {
-            return removeRecurse(node.right, val);
-        } else {
-            return removeRecurse(node.left, val);
+    private void replaceNodeWithNextValue(TreeNode node) throws Exception { 
+
+        // doing something not recursive just for the sake of practice
+        TreeNode tempPtr = node;
+
+        if(tempPtr.left.isLeaf && tempPtr.right.isLeaf) {
+            node.isLeaf = true; // this is essentially the same as setting it to null
         }
 
+        // first, determine if will replace with the furthest right on left side or vice versa
+        if(!tempPtr.left.isLeaf) {
+
+            // TODO: two casses: immidiate right is leaf, or transverse until there
+        }
+
+        if(!tempPtr.right.isLeaf) {
+
+            // TODO: two cases: immdiate left is left ot transverse until there
+
+        }
+        
     }
 
 
