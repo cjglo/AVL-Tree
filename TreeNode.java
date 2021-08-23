@@ -81,11 +81,6 @@ public class TreeNode {
 
     public TreeNode tallestGrandchild() throws Exception {
 
-        // TODO: Have to double check, but this might not be necessary
-        // if(this.left.isLeaf && this.right.isLeaf) {
-        //     throw new Exception("No Grandchild Node, Tree is too small!"); 
-        // }
-
         if(this.left.getHeight() >= this.right.getHeight()) {
 
             if(this.left.left.getHeight() >= this.left.right.getHeight()) {

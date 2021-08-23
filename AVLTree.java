@@ -174,17 +174,58 @@ public class AVLTree {
 
         if(tempPtr.left.isLeaf && tempPtr.right.isLeaf) {
             node.isLeaf = true; // this is essentially the same as setting it to null
+
+            // setting children to null not necessary but does save memory
+            node.left = null;
+            node.right = null;
         }
 
         // first, determine if will replace with the furthest right on left side or vice versa
-        if(!tempPtr.left.isLeaf) {
+        else if(!tempPtr.left.isLeaf) {
 
-            // TODO: two casses: immidiate right is leaf, or transverse until there
-        }
+            if(tempPtr.left.right.isLeaf) {
 
-        if(!tempPtr.right.isLeaf) {
+                node.setValue( tempPtr.left.getValue() );
 
-            // TODO: two cases: immdiate left is left ot transverse until there
+                node.left = tempPtr.left; // moving tree on reaplcing-node to the right spot
+                tempPtr.left.left.parent = node;
+            } else {
+
+                tempPtr = tempPtr.left.right;
+
+                while(!tempPtr.right.isLeaf) {
+                    tempPtr = tempPtr.right;
+                }
+
+                node.setValue ( tempPtr.getValue() );
+
+                tempPtr.parent.right = tempPtr.left;
+                tempPtr.left.parent = tempPtr.parent;
+            }
+
+
+        } 
+        else if(!tempPtr.right.isLeaf) {
+
+            if(tempPtr.right.left.isLeaf) {
+
+                node.setValue( tempPtr.right.getValue() );
+
+                node.right = tempPtr.right;
+                tempPtr.right.right.parent = node;
+            } else {
+
+                tempPtr = tempPtr.right.left;
+
+                while(!tempPtr.left.isLeaf) {
+                    tempPtr = tempPtr.left;
+                }
+
+                node.setValue( tempPtr.getValue() );
+
+                tempPtr.parent.left = tempPtr.right;
+                tempPtr.right.parent = tempPtr.parent;
+            }
 
         }
         
