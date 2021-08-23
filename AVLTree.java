@@ -164,6 +164,8 @@ public class AVLTree {
 
         replaceNodeWithNextValue(tempPtr);
 
+        rebalance(tempPtr);
+
     }
 
 
@@ -185,10 +187,13 @@ public class AVLTree {
 
             if(tempPtr.left.right.isLeaf) {
 
-                node.setValue( tempPtr.left.getValue() );
+                tempPtr = tempPtr.left;
+
+                node.setValue( tempPtr.getValue() );
 
                 node.left = tempPtr.left; // moving tree on reaplcing-node to the right spot
-                tempPtr.left.left.parent = node;
+                tempPtr.left.parent = node;
+                node.setHeight();
             } else {
 
                 tempPtr = tempPtr.left.right;
@@ -201,6 +206,8 @@ public class AVLTree {
 
                 tempPtr.parent.right = tempPtr.left;
                 tempPtr.left.parent = tempPtr.parent;
+
+                tempPtr.parent.setHeight();
             }
 
 
@@ -209,10 +216,13 @@ public class AVLTree {
 
             if(tempPtr.right.left.isLeaf) {
 
-                node.setValue( tempPtr.right.getValue() );
+                tempPtr = tempPtr.right;
+
+                node.setValue( tempPtr.getValue() );
 
                 node.right = tempPtr.right;
-                tempPtr.right.right.parent = node;
+                tempPtr.right.parent = node;
+                node.setHeight();
             } else {
 
                 tempPtr = tempPtr.right.left;
@@ -225,10 +235,12 @@ public class AVLTree {
 
                 tempPtr.parent.left = tempPtr.right;
                 tempPtr.right.parent = tempPtr.parent;
+
+                tempPtr.parent.setHeight();
             }
 
         }
-        
+
     }
 
 

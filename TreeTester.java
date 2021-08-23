@@ -9,7 +9,7 @@ public class TreeTester {
         AVLTree tree = new AVLTree();
 
         try {
-            tree.insert(5);
+            tree.insert(6);
 
             tree.insert(10);
 
@@ -31,12 +31,6 @@ public class TreeTester {
 
             tree.insert(0);
 
-            // tree.insert(-2);
-
-            // tree.insert(-10);
-
-            // tree.insert(-9);
-
             tree.insert(21);
 
             tree.insert(17);
@@ -54,6 +48,22 @@ public class TreeTester {
             tree.insert(28);
 
             // tree.insert(18);
+
+            tree.remove(14);
+
+            tree.remove(25);
+
+            tree.remove(21);
+
+            tree.remove(12);
+
+            tree.remove(9);
+
+            tree.remove(2);
+
+            tree.remove(11);
+
+            tree.remove(19);
 
             tree.printInOrder();
 
